@@ -60,7 +60,7 @@ function App() {
             alignItems: 'center',
           }}
         >
-          <Typography variant='h4' sx={{ mb: 10 }}>
+          <Typography variant='h6' sx={{ mb: 5 }}>
             Who is more popular?
           </Typography>
           <Artists />
