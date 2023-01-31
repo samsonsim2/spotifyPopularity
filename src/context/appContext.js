@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import list from '../list'
 import { Buffer } from 'buffer'
+
 import axios from 'axios'
 // Create context
 const AppContext = React.createContext()
@@ -17,6 +18,13 @@ const AppProvider = ({ children }) => {
     msg: '',
     color: '',
   })
+  const [catergory, setCatergory] = useState(0)
+
+  const catalog = [
+    '1HY2Jd0NmPuamShAr6KMms', //Pop
+    '6noxsCszBEEK04kCehugOp', //Mando-Pop
+    '5K4W6rqBFWDnAN6FQUkS6x', // Rap
+  ]
 
   //-----------//
 
@@ -45,7 +53,7 @@ const AppProvider = ({ children }) => {
       const {
         data: { artists },
       } = await axios(
-        `https://api.spotify.com/v1/artists/1HY2Jd0NmPuamShAr6KMms/related-artists`,
+        `https://api.spotify.com/v1/artists/${catalog[catergory]}/related-artists`,
         {
           method: 'GET',
           headers: {
@@ -59,7 +67,7 @@ const AppProvider = ({ children }) => {
       setArtistsList(artists)
     }
     fetchToken()
-  }, [])
+  }, [catergory])
 
   //---------------*//
 
@@ -76,8 +84,6 @@ const AppProvider = ({ children }) => {
         mostFollower = followers
       }
     }
-
-    console.log(mostFollower)
 
     if (score < 2) {
       if (followerCount === mostFollower) {
@@ -126,7 +132,7 @@ const AppProvider = ({ children }) => {
 
       artistsBattle.push(artistsList[randomNumber])
     }
-    console.log(artistsBattle)
+
     setArtistsCards(artistsBattle)
   }
 
@@ -143,6 +149,8 @@ const AppProvider = ({ children }) => {
         isShuffling,
         reset,
         artistsList,
+        catergory,
+        setCatergory,
       }}
     >
       {children}

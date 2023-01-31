@@ -9,10 +9,7 @@ const Artists = ({ artists }) => {
   const { artistsCards, shuffle, checkUserInput, isShuffling, artistsList } =
     useAppContext()
   if (artistsList.length > 0) {
-    artistsList.map((artist) => {
-      console.log(artist.images[0].url)
-      console.log(artist.followers.total)
-    })
+    artistsList.map((artist) => {})
   }
 
   if (artistsCards.length > 0) {
@@ -20,27 +17,28 @@ const Artists = ({ artists }) => {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'row',
-          gap: 10,
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: { xs: 3, md: 10 },
           alignItems: 'center',
         }}
       >
-        {artistsCards.map((artist) => {
+        {artistsCards.map((artist, index) => {
           return (
             <Card
+              key={index}
               onClick={() => {
                 if (!isShuffling) {
                   checkUserInput(artist.followers.total)
                 }
               }}
               sx={{
-                height: 200,
-                width: 250,
+                height: { xs: 150, md: 200 },
+                width: { xs: 150, md: 250 },
                 '&:hover': {
                   transform: 'scale3d(1.1, 1.1, 1)',
                   transition: 'transform 0.15s ease-in-out',
                 },
-                p: 6,
+                p: { xs: 3, md: 6 },
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -48,9 +46,9 @@ const Artists = ({ artists }) => {
             >
               <CardMedia
                 sx={{
-                  height: 150,
-                  width: 150,
-                  borderRadius: '50%',
+                  height: { xs: 100, md: 150 },
+                  width: { xs: 100, md: 150 },
+                  borderRadius: '100%',
                   objectFit: 'contain',
                 }}
                 image={artist.images[0].url}
