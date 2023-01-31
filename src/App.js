@@ -27,6 +27,7 @@ function App() {
     catergory,
     setCatergory,
   } = useAppContext()
+  console.log('test')
 
   const handleChange = (event) => {
     setCatergory(event.target.value)
