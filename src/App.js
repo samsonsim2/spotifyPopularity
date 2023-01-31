@@ -85,7 +85,7 @@ function App() {
                   name: 'age',
                   id: 'uncontrolled-native',
                 }}
-                disabled={score === 0}
+                disabled={score > 0}
                 onChange={handleChange}
                 sx={{ height: 20, background: 'white' }}
               >
